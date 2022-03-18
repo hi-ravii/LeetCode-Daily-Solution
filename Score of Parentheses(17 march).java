@@ -29,7 +29,7 @@
 
 class Solution {
     public int scoreOfParentheses(String s) {
-        Stack<Integer> st = new Stack<>();
+        Stack<Integer> st = new Stack<Integer>();
         int score = 0; 
         for(int i=0;i<s.length();i++){
             char ch = s.charAt(i);
