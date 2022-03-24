@@ -39,6 +39,7 @@ class Solution {
                 boatCount++;
                 left++;
                 right--;
+                
             }
             else{
                 boatCount++;
