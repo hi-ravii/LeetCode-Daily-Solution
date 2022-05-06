@@ -47,6 +47,6 @@ class Solution {
                 prev = max;
             }
         }
-        return res;
+        return res ;
     }
 }
