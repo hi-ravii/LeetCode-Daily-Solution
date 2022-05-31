@@ -28,6 +28,9 @@
 // 54,388
 // Submissions
 // 98,226
+
+APPROACH1
+
 class Solution {
     public boolean hasAllCodes(String s, int k) {
         if(s.length() < k) return false;
@@ -35,5 +38,25 @@ class Solution {
         for(int i = 0 ; i <= s.length() - k; i++)//length-k becauze to make sure we get the window of size k after ith index 
             set.add(s.substring(i, i+k));// it will automatically skip the duppliates
         return set.size() == (int)Math.pow(2,k);
+    }
+}
+APPROACH 2= LEFT SHIFTING
+class Solution {
+    public boolean hasAllCodes(String s, int k) {
+        int need = 1 << k;
+        Set<String> got = new HashSet<String>();
+
+        for (int i = k; i <= s.length(); i++) {
+            String a = s.substring(i - k, i);
+            if (!got.contains(a)) {
+                got.add(a);
+                need--;
+                // return true when found all occurrences
+                if (need == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
