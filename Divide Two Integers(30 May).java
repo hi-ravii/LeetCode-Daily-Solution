@@ -30,13 +30,18 @@
 // 2,794,183
 class Solution {
     public int divide(int A, int B) {
-       if (A == 1 << 31 && B == -1) return (1 << 31) - 1;
-       int a = Math.abs(A), b = Math.abs(B), res = 0, x = 0;
-       while (a - b >= 0) {
-           for (x = 0; a - (b << x << 1) >= 0; x++);
-           res += 1 << x;
-           a -= b << x;
+        // A= Divident (jo divide hota h )
+        //B= Divisor (jo divide krta h)
+       if (A == 1 << 31 && B == -1) return Integer.MAX_VALUE ;
+       int a = Math.abs(A), b = Math.abs(B), result = 0, count = 0;
+        // a=absolute value of A
+        // b= absolute value of B
+       boolean sign =(A > 0) == (B > 0);//if both are psotive then sign flat is true
+       while (a - b >= 0) {//while b can be remove from a till then 
+           for (count = 0; a - (b << count << 1) >= 0; count++);//remove b from a by multiplying it by 2 everytime and increasing count as well
+           result += 1 << count;// add count to result
+           a -= b << count;//updating a value after removing b from it
        }
-       return (A > 0) == (B > 0) ? res : -res;
+       return sign ? result : -result;//if sign is true the return +ve result else -ve res
    }
 }
