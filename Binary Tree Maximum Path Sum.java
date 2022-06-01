@@ -46,6 +46,6 @@ public class Solution {
         
         max = Math.max(max, root.val + left + right);
         
-        return root.val + Math.max(left, right);
+        return root.val + Math.max(left, right);//return the value in left and right
     }
 }
