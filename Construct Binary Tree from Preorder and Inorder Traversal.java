@@ -42,22 +42,29 @@
  * }
  */
 class Solution {
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        TreeNode root = buildTree(inorder,0,inorder.length-1,postorder,0,postorder.length-1);
-        return root;
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    TreeNode root = buildTree(preorder, 0, preorder.length - 1, inorder, 0, 
+    inorder.length - 1);
+    return root;
     }
-    public TreeNode buildTree(int[] inorder,int instart,int inend ,int[] postorder, int poststart,int postend){
-        if(instart>inend || poststart>poststart )return null;
-        TreeNode root = new TreeNode(postorder[postend]);
-        int inroot=0;
-        for(int i=0;i<=inorder.length-1;i++ ){
-            if(inorder[i]==root.val){
-                inroot=i;
-            }
+    public TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[]
+  inorder, int inStart, int inEnd) {
+    if (preStart > preEnd || inStart > inEnd) return null;
+
+    TreeNode root = new TreeNode(preorder[preStart]);
+    int inRoot = 0;
+    for (int i = inStart; i <= inEnd; i++) {
+        if (inorder[i] == root.val) {
+            inRoot = i;
         }
-        int rootleft= inroot-instart;
-        root.left= buildTree(inorder,instart,inroot-1,postorder,poststart,poststart+rootleft-1);
-        root.right = buildTree(inorder,inroot+1,inend,postorder,poststart+rootleft,postend-1);
-        return root;
-    }
+    }    
+    int numsLeft = inRoot - inStart;
+
+    root.left = buildTree(preorder, preStart + 1, preStart + numsLeft, inorder, 
+    inStart, inRoot - 1);
+    root.right = buildTree(preorder, preStart + numsLeft + 1, preEnd, inorder, 
+    inRoot + 1, inEnd);
+
+    return root;
+  }
 }
