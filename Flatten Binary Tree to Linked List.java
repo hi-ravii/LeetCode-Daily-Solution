@@ -57,3 +57,23 @@ class Solution {
         prev = root;
     }
 }
+APPROACH :2 - ITRATIVE USING STACK
+class Solution {
+    TreeNode prev = null;
+    public void flatten(TreeNode root) {
+        Stack<TreeNode> st = new Stack<>();
+        if(root==null)return;
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode curr =st.peek();
+            st.pop();
+            if(curr.right!=null) st.push(curr.right);
+            if(curr.left!=null) st.push(curr.left);
+            if(!st.isEmpty()){
+                curr.right = st.peek();
+                curr.left = null;
+            }
+        }
+        
+    }
+}
