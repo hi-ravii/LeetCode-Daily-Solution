@@ -22,7 +22,7 @@
 // 1,397,268
 // Submissions
 // 2,167,828
-APPROCH :1
+APPROCH :1 = ITRATIVE
 
 class Solution {
     public int findKthLargest(int[] nums, int k) {
@@ -35,5 +35,17 @@ class Solution {
             j++;
         }
         return ans[k-1];
+    }
+}
+APPROCH :2 = HEAP
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        
+        for(int i : nums){
+            minHeap.offer(i);
+            if(minHeap.size()>k)minHeap.poll();
+        }
+        return minHeap.peek();
     }
 }
