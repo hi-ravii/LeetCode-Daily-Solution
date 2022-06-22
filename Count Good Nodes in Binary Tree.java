@@ -56,14 +56,15 @@ class Solution {
     public int goodNodes(TreeNode root) {
         return helper(root,Integer.MIN_VALUE);
     }
-    public Integer helper(TreeNode root, int max){
+    public int helper(TreeNode root, int max){
         if(root == null)return 0;
-        int ans =0;
-        if(root.val>=max) ans =1;
+        int goodNode=0;
+        if(root.val>=max) goodNode=1;
         max = Math.max(max,root.val);
         int left = helper(root.left,max);
         int right = helper(root.right,max);
-        ans+=right+left;
-        return ans;
+        goodNode+=left+right;
+        return goodNode;
+        
     }
 }
