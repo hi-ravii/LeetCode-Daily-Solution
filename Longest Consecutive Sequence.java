@@ -43,19 +43,19 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         int max = 0;
         int count =0;
-        for(int i :nums){
+        for(int i :nums){//filling set
             set.add(i);
         }
-        for(int i=0;i<nums.length;i++){
-            if (set.contains(nums[i]-1))continue;
-            else{
+        for(int i=0;i<nums.length;i++){//itrating over the given array
+            if (set.contains(nums[i]-1))continue;// if smaller no. exist then me itrate forward so that we can go upto the smallest value from which the sequnce start . it helps to reduce cases and the time complexity
+            else{// now when we got the lowest value of the sub sequence
                 int curr = nums[i];
                 count=1;
-                while(set.contains(curr+1)){
+                while(set.contains(curr+1)){//we add the value till we get upto the last element of the sequence while increasing the count along with it 
                     curr++;
                     count++;
                 }
-                max = Math.max(max,count);
+                max = Math.max(max,count);// updating the max value
             }
         }
         return max;
