@@ -37,3 +37,27 @@ class Solution {
         return max;
     }
 }
+APPROACH 2 :USING SET 
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        int max = 0;
+        int count =0;
+        for(int i :nums){
+            set.add(i);
+        }
+        for(int i=0;i<nums.length;i++){
+            if (set.contains(nums[i]-1))continue;
+            else{
+                int curr = nums[i];
+                count=1;
+                while(set.contains(curr+1)){
+                    curr++;
+                    count++;
+                }
+                max = Math.max(max,count);
+            }
+        }
+        return max;
+    }
+}
