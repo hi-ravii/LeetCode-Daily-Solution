@@ -25,7 +25,21 @@
 // n == height.length
 // 2 <= n <= 105
 // 0 <= height[i] <= 104
+APPROACH 1: BRUTE FORCE
+class Solution {
+    public int maxArea(int[] height) {
+        int max = 0;
+        for(int i = 0;i<height.length;i++){
+            for(int j = i+1;j<height.length;j++){
+                int area = Math.min(height[i],height[j])*(j-i);
+                if(area > max) max = area;
+            }
+        }
+        return max;
+    }
+}
 
+APPROACH 2: (using two pointers)
 class Solution {
     public int maxArea(int[] height) {
         int left = 0;
