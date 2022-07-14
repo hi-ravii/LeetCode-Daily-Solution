@@ -36,35 +36,40 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-            if(head==null||head.next==null) return;
-            
-            //Find the middle of the list
-            ListNode p1=head;
-            ListNode p2=head;
-            while(p2.next!=null&&p2.next.next!=null){ 
-                p1=p1.next;
-                p2=p2.next.next;
-            }
-            
-            //Reverse the half after middle  1->2->3->4->5->6 to 1->2->3->6->5->4
-            ListNode preMiddle=p1;
-            ListNode preCurrent=p1.next;
-            while(preCurrent.next!=null){
-                ListNode current=preCurrent.next;
-                preCurrent.next=current.next;
-                current.next=preMiddle.next;
-                preMiddle.next=current;
-            }
-            
-            //Start reorder one by one  1->2->3->6->5->4 to 1->6->2->5->3->4
-            p1=head;
-            p2=preMiddle.next;
-            while(p1!=preMiddle){
-                preMiddle.next=p2.next;
-                p2.next=p1.next;
-                p1.next=p2;
-                p1=p2.next;
-                p2=preMiddle.next;
-            }
+        if(head==null||head.next==null)return ;
+        
+        //Find the middle of the list
+        ListNode slow = head;//slow head pe
+        ListNode fast = head.next;//fast head.next se
+        while(fast!=null&&fast.next!=null){//slow humare middle pe poch jayega
+            slow = slow.next;
+            fast = fast.next.next;
         }
-}
+        
+        //Reverse the half after middle  1->2->3->4->5->6 to 1->2->3->6->5->4
+        ListNode second =slow.next;//Second is At the starting point of second half
+        ListNode prev = null;
+        slow.next = null;//last node of first half pointing to null
+        while(second!=null){// basic reversing function
+            ListNode forw = second.next;
+            second.next = prev;
+            prev =second;
+            second = forw;
+        }
+        
+        //give output as prev as the head of the reverse linked list
+        //Start reorder one by one  1->2->3->6->5->4 to 1->6->2->5->3->4
+        
+        
+        ListNode first = head;//first pointer at the head of first list
+        second = prev;//second pointet at the head of the second reverse list
+        while(second!=null){//merging function
+            ListNode temp1=first.next;//temp1 to store the next value of first half
+            ListNode temp2 = second.next;//temp 2 to store the next value of second half
+            first.next = second;
+            second.next =temp1;
+            first = temp1;//reseting first
+            second = temp2;//resenting second
+        }
+    }
+}  
