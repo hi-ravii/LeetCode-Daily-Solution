@@ -70,9 +70,9 @@ class Solution {
         // if the mid elements value is greater than the 0th element this means
         // the least value is still somewhere to the right as we are still dealing with elements
         // greater than nums[0]
-        if (nums[mid] > nums[0]) {
+        if (nums[mid] > nums[0]) {//i.e, mid is a part of left sorted array then ans will be in right side
           left = mid + 1;
-        } else {
+        } else {//if mid is a part of right sorted array then ans will be in left side
           // if nums[0] is greater than the mid value then this means the smallest value is somewhere to
           // the left
           right = mid - 1;
