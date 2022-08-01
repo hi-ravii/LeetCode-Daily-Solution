@@ -79,3 +79,5 @@ class Solution {
         return Math.max(l,r)+1;// else return its height
     }
 }
+// time complexity: O(n)
+// space complexity: O(n)
