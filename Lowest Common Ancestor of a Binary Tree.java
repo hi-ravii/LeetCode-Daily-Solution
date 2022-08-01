@@ -42,6 +42,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+// APPROACH 1: RECURSSION
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root==null)return null;
@@ -50,6 +51,25 @@ class Solution {
         TreeNode right =lowestCommonAncestor(root.right,p,q);
         if(left==null)return right;
         else if(right==null)return left;
-        else return root;
+        else return root;//if both left and right is returning value then root will definately be a ancestor
     }
 }
+// time complexity = O(n)
+// space complexity = O(n)
+
+APPROACH 2 : ancestor in BST
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null)return null;
+        int curr = root.val;
+        if(curr>p.val &&curr>q.val){
+            return lowestCommonAncestor(root.left,p,q);
+        }
+         if(curr<p.val&&curr<q.val){
+            return lowestCommonAncestor(root.right,p,q);
+        }
+        return root;
+    }
+}
+// time complexity = O(logn)
+// space complexity = O(1)
