@@ -49,11 +49,11 @@ class Solution {
         return res;
     }
     public void solve(TreeNode root , List<Integer> res, int level ){
-        TreeNode cur = root;
-        if(cur==null)return;
+        TreeNode cur = root;//current node
+        if(cur==null)return;//if current node is null, return
         
-        if(level==res.size())res.add(cur.val);
-        solve(cur.right,res,level+1);
-        solve(cur.left,res,level+1);
+        if(level==res.size())res.add(cur.val);//if current level is not in the list, add it
+        solve(cur.right,res,level+1); //go to right child
+        solve(cur.left,res,level+1);//go to left child
     }
 }
