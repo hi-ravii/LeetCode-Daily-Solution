@@ -50,7 +50,8 @@ class Solution {
     }
     public boolean isValidBST(TreeNode root, long minVal,long maxVal){
         if(root==null)return true;
-        if(root.val<=minVal || root.val>=maxVal)return false;
+        if(root.val<=minVal || root.val>=maxVal)return false;//if value of root doesnt lie in between the max & min
+        ////for left child value should be greater from min and smaller tha the root value and for right child value should be smaller than max and greater than the root value
         else return isValidBST(root.left,minVal,root.val)&& isValidBST(root.right,root.val,maxVal);
     }
 }
