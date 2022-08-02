@@ -58,12 +58,12 @@ class Solution {
     }
     public int helper(TreeNode root, int max){
         if(root == null)return 0;
-        int goodNode=0;
+        int goodNode=0;//it works like a counter
         if(root.val>=max) goodNode=1;
-        max = Math.max(max,root.val);
-        int left = helper(root.left,max);
-        int right = helper(root.right,max);
-        goodNode+=left+right;
+        max = Math.max(max,root.val);//updating the max value if root value is greater than to max
+        int left = helper(root.left,max);//checking the abve code for the hole left child
+        int right = helper(root.right,max);//checking the abve code for the hole right child
+        goodNode+=left+right;//adding the left and right childs good nodes
         return goodNode;
         
     }
