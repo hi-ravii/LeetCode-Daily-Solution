@@ -43,6 +43,8 @@ class Solution {
     }
 }
 APPROCH 2 : MIN LEFT
+//we will find the min price so far and then subtract it from the current price to get the profit
+//hence return the max profit
 class Solution {
     public int maxProfit(int[] prices) {
         int min =prices[0];
@@ -58,6 +60,9 @@ class Solution {
 }
 
 APPROACH 3: SLIDING WINDOW
+//we will use a window to find the max profit
+//we will keep on updating the max profit and the min price
+
 class Solution {
     public int maxProfit(int[] prices) {
         int i =0,j=1,max=0;
