@@ -44,8 +44,8 @@ public class Solution {
         int left = Math.max(helper(root.left),0);// to avoid negative node value and returning zero instead
         int right = Math.max(helper(root.right),0);
         
-        max = Math.max(max, root.val + left + right);
+        max = Math.max(max, root.val + left + right);//stroing max sum path as it will be (left +right+root.val)
         
-        return root.val + Math.max(left, right);//return the value in left and right
+        return root.val + Math.max(left, right);//decide the max path possible by returning the max value from its left and right
     }
 }

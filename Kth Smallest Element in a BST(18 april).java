@@ -64,17 +64,3 @@ class Solution {
 }
 
 APPROACH 2:
-class Solution {
-    int ans = 0;
-    int count = 0;
-    public int kthSmallest(TreeNode root, int k) {
-        if (root == null) {
-            return 0;
-        }
-        kthSmallest(root.left, k);
-        count++;
-        kthSmallest(root.right, k);
-        
-        return ans;
-    }
-}
