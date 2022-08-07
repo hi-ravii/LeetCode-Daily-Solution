@@ -31,6 +31,9 @@ APPROACH : HASHMAP WITH SLIDING WINDOW
 //if it is present in the map then we increment count
 //when count is 0 then we return true
 //if count is not 0 then we keep sliding the window
+//j++ pe map se frequency mein count mein decrement karne ke liye
+//i++ pe map se frequency mein count mein increment karne ke liye
+
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         Map<Character, Integer> map = new HashMap<>();
