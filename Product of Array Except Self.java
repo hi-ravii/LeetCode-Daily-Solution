@@ -49,6 +49,7 @@ class Solution {
 }
 
 APPROACH 2: PREFIX SUFFIX ARRAY(explanation in copy)
+
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
