@@ -23,17 +23,21 @@
 
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int i : nums){ map.put(i, map.getOrDefault(i, 0) + 1); }
+        Map<Integer, Integer> map = new HashMap<>();//key is the number and value is the frequency
+        for(int i : nums){ map.put(i, map.getOrDefault(i, 0) + 1); }//put the number and its frequency into the map
         
-        Queue<Integer> maxheap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
-        for(int key : map.keySet()){maxheap.add(key); }
-        
-        int ans[] = new int[k];
-        for(int i = 0; i < k; i++){
-            ans[i] = maxheap.poll();
+        Queue<Integer> maxheap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));//maxheap to store the keys of the map in descending order of their frequency
+        for(int key : map.keySet())//map.keySet() returns all the keys contained in this map
+            maxheap.add(key);
+        {//add all the keys to the maxheap
+            maxheap.add(key);
         }
         
-        return ans; 
+        int ans[] = new int[k];//array to store the answer with size k
+        for(int i = 0; i < k; i++){//add the first k elements of the maxheap to the answer array
+            ans[i] = maxheap.poll();//poll() removes the head of the queue
+        }
+        
+        return ans; //return the answer array
     }
 }
