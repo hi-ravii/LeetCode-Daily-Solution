@@ -63,3 +63,6 @@ class Solution {
         return true;//if all the elements are valid then return true
     }
 }
+//Time complexity =O(9*9)
+//Space complexity =O(9*9)
+//to calculate the no. of the subbox we are using the formula (i/3)*3+(j/3) where i is the row and j is the column
