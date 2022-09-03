@@ -34,7 +34,7 @@ class Solution {
         for(String i :strs){
             char ch[] = i.toCharArray();//storing every string and converting into array
             Arrays.sort(ch);// sorting that string
-            String s = new String(ch);//storing that string in another string
+            String s = new String(ch);//storing that Array of string in another string
             if(!map.containsKey(s)){//checking if new string exist in map or not
                 map.put(s,new ArrayList<>());//if not then add into map with key as the sorted string and value as the list of its anagram strings
             }
