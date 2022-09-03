@@ -50,16 +50,16 @@
 // 1.4M
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        Set<String> set = new HashSet<>();
-        for(int i=0;i<9;i++){
-            for(int j=0;j<9;j++){
-                if(board[i][j]!='.'){
-                    if(!set.add("ROW"+i+board[i][j]))return false;
-                    if(!set.add("COL"+j+board[i][j]))return false;
-                    if(!set.add("BOX"+((i/3)*3+(j/3))+board[i][j]))return false;
+        Set<String> set = new HashSet<>();// creating a set
+        for(int i=0;i<9;i++){// itrating over all rows
+            for(int j=0;j<9;j++){//itrating over all col
+                if(board[i][j]!='.'){//if the element is not empty then only we will check and add to set
+                    if(!set.add("ROW"+i+board[i][j]))return false;//set will return false if the element is already present in set within same row and its unable to add it again
+                    if(!set.add("COL"+j+board[i][j]))return false;//set will return false if the element is already present in set within same column and its unable to add it again
+                    if(!set.add("BOX"+((i/3)*3+(j/3))+board[i][j]))return false;//set will return false if the element is already present in set within same subbox and its unable to add it again
                 }
             }
         }
-        return true;
+        return true;//if all the elements are valid then return true
     }
 }
