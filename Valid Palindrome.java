@@ -37,12 +37,12 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         for(int i =0;i<s.length();i++){
             char ch = s .charAt(i);
-            if(Character.isLetterOrDigit(ch)){
-                sb.append(Character.toLowerCase(ch));
+            if(Character.isLetterOrDigit(ch)){//checking if the character is alphanumeric , number or not
+                sb.append(Character.toLowerCase(ch));//converting a charcter into lowercase and then adding in stringbuilder
             }
             
         }
-        return isValid(sb.toString());
+        return isValid(sb.toString());//converting stringbuilder to string
     }
     public boolean isValid(String sb){
         int i =0,j=sb.length()-1;
