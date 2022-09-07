@@ -28,6 +28,9 @@
 // 3,652,119
 // Submissions
 // 10,877,154
+// APPROACH = we put all the character of current window  in map such that if mapsize is equal to window size then we update the max length of window as it means that all the character of current window are unique 
+// and if map size is samller than the window size it means character in windows are repeating so we remove the character from the left of window and as well as from the map and we keep on doing this until the map size is equal to window size and we update the max length of window and we return the max length of window at the end of the program
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         int i=0,j=0,max=0;

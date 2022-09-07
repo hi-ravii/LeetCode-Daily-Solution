@@ -50,7 +50,7 @@ class Solution {
         int min =prices[0];
         int profit =0;
         int max=0;
-        for(int i =0;i<prices.length;i++){
+        for(int i =1;i<prices.length;i++){
             min = Math.min(min,prices[i]);
             profit= prices[i]-min;
             max=Math.max(max,profit);
