@@ -49,7 +49,9 @@ class Solution {
                 map.put(s.charAt(i), map.get(s.charAt(i)) - 1);//decrement the frequency of the character in the map
                 i++;//decrement the window size from the front
             }
-            max = Math.max(max, j - i + 1);//update the max AND store the value of max sizze window possible
+            else if (letter_to_change <= k){//valid cases which we wanted
+                max = Math.max(max, j - i + 1);//update the max AND store the value of max sizze window possible
+            }
             j++;//increment the window size
         }
         return max;//return the max size of window

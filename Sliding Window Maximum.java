@@ -68,7 +68,7 @@ class Solution {
                 q.add(nums[j]);//just add it directly
             }
             else{
-                while(q.size() > 0 && q.peekLast() < nums[j]){//we compare with the rightmoast element in the queue as it will be the smallest element in the queue
+                while(q.size() > 0 && q.peekLast() < nums[j]){//we compare with the rightmoast element in the queue as it will be the largest element in the queue
                     //if the last element in the deque is less than the current element then remove it
                     //we remove the last element because it is the smallest element in the deque
                     //it doesnt matter to remove smaller elemnt as in the last we want the larger no in the window
