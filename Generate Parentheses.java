@@ -19,6 +19,7 @@
 // 1,120,781
 // Submissions
 // 1,583,059
+SOLUTION = 1: 
 
 class Solution {
     public List<String> generateParenthesis(int n) {
@@ -43,5 +44,23 @@ class Solution {
             op2+=')';//adding close braket
             solve(open,close-1,op2,res);//calling the function with one less close braket
         }
+    }
+}
+
+SOLUTION 2= https://leetcode.com/problems/generate-parentheses/discuss/1945298/Java-BackTracking-with-recursive-tree
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        generate(res,"",0,0,n);
+        return res;
+    }
+    public void generate(List<String> res,String s,int open,int close,int max){
+        if(s.length()==max*2){
+            res.add(s);
+            return;
+        }
+        if(open<max)generate(res,s+"(",open+1,close,max);
+        if(close<open)generate(res,s+")",open,close+1,max);
     }
 }
