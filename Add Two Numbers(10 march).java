@@ -25,13 +25,14 @@
 // The number of nodes in each linked list is in the range [1, 100].
 // 0 <= Node.val <= 9
 // It is guaranteed that the list represents a number that does not have leading zeros.
+APPRACH 1 : ITERATIVE
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode curr = dummy ;
         int carry =0;
-        while(l1!=null||l2!=null||carry==1){
+        while(l1!=null||l2!=null||carry!=0){
             int sum=0;
             if(l1!=null){
                 sum+=l1.val;
