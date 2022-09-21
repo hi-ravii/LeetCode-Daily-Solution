@@ -40,6 +40,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+APPROACH 1 : ITERATIVE
+
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode curr = head,forw = null , prev = null;
@@ -54,3 +56,81 @@ class Solution {
     }
     
 }
+APPROACH 2 : RECURSIVE
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null)return head;
+        ListNode rest = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return rest;
+    }
+    
+}
+APPRACH 3 : USING STACK
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        Stack<ListNode> st = new Stack<>();
+        ListNode curr = head;
+        while(curr!=null){
+            st.push(curr);
+            curr = curr.next;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
+        while(!st.isEmpty()){
+            temp.next = st.pop();
+            temp = temp.next;
+        }
+        temp.next = null;
+        return dummy.next;
+    }
+    
+}
+APPROACH 4 : USING ARRAYLIST
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ArrayList<Integer> al = new ArrayList<>();
+        ListNode curr = head;
+        while(curr!=null){
+            al.add(curr.val);
+            curr = curr.next;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
+        for(int i = al.size()-1;i>=0;i--){
+            temp.next = new ListNode(al.get(i));
+            temp = temp.next;
+        }
+        return dummy.next;
+    }
+    
+}
+APPROACH 5 : USING ARRAY
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        int n = 0;
+        ListNode curr = head;
+        while(curr!=null){
+            n++;
+            curr = curr.next;
+        }
+        int[] arr = new int[n];
+        curr = head;
+        int i = 0;
+        while(curr!=null){
+            arr[i] = curr.val;
+            i++;
+            curr = curr.next;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
+        for(int j = arr.length-1;j>=0;j--){
+            temp.next = new ListNode(arr[j]);
+            temp = temp.next;
+        }
+        return dummy.next;
+    }
+    
+}
+
