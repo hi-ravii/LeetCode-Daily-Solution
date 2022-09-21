@@ -40,7 +40,7 @@ class Solution {
         
         //Find the middle of the list
         ListNode slow = head;//slow head pe
-        ListNode fast = head.next;//fast head.next se
+        ListNode fast = head;//fast head.next se
         while(fast!=null&&fast.next!=null){//slow humare middle pe poch jayega
             slow = slow.next;
             fast = fast.next.next;
