@@ -36,60 +36,67 @@
 // 0 <= key <= 104
 // 0 <= value <= 105
 // At most 2 * 105 calls will be made to get and put.
+
+// SOLUTION 1 : USING DOUBLY LINKED LIST AND HASHMAP
+//COPY ME EXPLANATION HAI
 class LRUCache {
-    Node head = new Node(0, 0), tail = new Node(0, 0);
-    Map < Integer, Node > map = new HashMap();
-    int capacity;
-
-    public LRUCache(int _capacity) {
-        capacity = _capacity;
-        head.next = tail;
-        tail.prev = head;
+    class Node{//node will be consist of the address of nodes in doubly linked list
+        int key,value;
+        Node prev,next;
+        Node(int _key,int _value){
+            key = _key;
+            value = _value;
+        }
     }
-
+    Node head =new Node(0,0);//initializing head of doubly linked list
+    Node tail = new Node(0,0);//initializing tail of doubly linked list
+    int capacity;
+    Map<Integer, Node> map = new HashMap<>();//map will store the key value and the address of nodes (key,value) in doubly linked list
+    
+    public LRUCache(int _capacity) {
+        head.next =tail;
+        tail.prev = head;
+        capacity = _capacity;
+        
+    }
+    
     public int get(int key) {
-        if (map.containsKey(key)) {
+        //agr map me key h toh uska value return kro aur uska node ko  remove kro and usko head.next me daal do
+        if(map.containsKey(key)){
             Node node = map.get(key);
             remove(node);
             insert(node);
             return node.value;
-        } else {
-            return -1;
         }
+        else return -1;//agr map me woh key h hi nhi  toh -1 return kro
     }
-
+    
     public void put(int key, int value) {
-        if (map.containsKey(key)) {
+//1 case = agr map me woh key phle se h toh usko remove kro map se aur nyi key value daal do aur uss naye nodde ko head.next pe daal do
+//2 case = agr map me woh key nhi h toh usko map me daal do aur usko head.next pe daal do
+//3 case = agr map me woh key nhi h aur map ka size capacity k barabr phle se hi h toh tail.prev ko remove kro map as well as linked list se aur naya node daal do map me aur head.next pe
+        if(map.containsKey(key)){
             remove(map.get(key));
         }
-        if (map.size() == capacity) {
+        if(map.size()==capacity){
             remove(tail.prev);
         }
-        insert(new Node(key, value));
+        insert(new Node(key,value));
     }
-
-    private void remove(Node node) {
-        map.remove(node.key);
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-    }
-
-    private void insert(Node node) {
-        map.put(node.key, node);
-        node.next = head.next;
-        node.next.prev = node;
+    public void insert(Node node){
+        //inserting node at head.next and adding it to map as well
         
+        map.put(node.key,node);
+        node.next = head.next;
+        head.next.prev = node;
         head.next = node;
         node.prev = head;
     }
-
-    class Node {
-        Node prev, next;
-        int key, value;
-        Node(int _key, int _value) {
-            key = _key;
-            value = _value;
-        }
+    public void remove(Node node){
+        //removing node from map as well as linked list
+        map.remove(node.key);
+        node.prev.next =node.next;
+        node.next.prev = node.prev;
     }
 }
 /**
