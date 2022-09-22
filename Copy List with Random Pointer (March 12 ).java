@@ -31,50 +31,88 @@
 // -104 <= Node.val <= 104
 // Node.random is null or is pointing to some node in the linked list.
 
+APPROACH 1 : POINTERS //explained in copy 
 
 class Solution {
     public Node copyRandomList(Node head) {
-        if (head == null)
+        if(head == null) {
             return head;
-
-        Node curr = head;
-        // place the cloned Node right next to curr
-        while (curr != null) {
-            Node savNext = curr.next;
-            Node copy = new Node(curr.val);
-            curr.next = copy;
-            copy.next = savNext;
-
-            curr = savNext;
         }
-
+        
+        //first form the list with current nodes and new nodes
+        // if list is 1->2->3
+        // we make it 1->1->2->2->3->3
+        Node curr = head;
+        while(curr != null) {
+            Node temp = new Node(curr.val);
+            temp.next = curr.next;
+            curr.next = temp;
+            curr = curr.next.next;
+        }
+        
+        //Now we have actual nodes and new Nodes
+        // understand this clearly first
+        // curr.next.random = curr.random.next;
+		
         curr = head;
-        while (curr != null) {
-            Node savNext = curr.next.next;
-            // adjust the pointer for random
-            if (curr.random != null) {
+        while(curr!=null) {
+            if(curr.random == null) {
+                curr.next.random = null;
+            } else {
                 curr.next.random = curr.random.next;
             }
             curr = curr.next.next;
         }
-
+        
+        //separate out both the lists and return the new list
         curr = head;
-        Node ncurr = head.next;
-        Node savCurr = null, savnewCurr = null;
-        Node newHead = ncurr;
-        while (curr != null) {
-            savCurr = curr.next.next;
-            if (ncurr.next != null)
-                savnewCurr = ncurr.next.next;
-            else
-                savnewCurr = null;
-
-            curr.next = savCurr;
-            ncurr.next = savnewCurr;
-
-            curr = savCurr;
-            ncurr = savnewCurr;
+        Node curr1 = head.next;
+        Node copyLIST = curr1;
+        while(curr != null) {
+            curr.next = curr.next.next;
+            if(curr1.next != null) {
+                curr1.next = curr1.next.next;
+            } 
+            curr = curr.next;
+            curr1 = curr1.next;
         }
-        return newHead;
+        return copyLIST;
     }
 }
+APPROACH 2 : HASHMAP
+/*
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+*/
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        Node curr = head;
+        Map<Node,Node>map = new HashMap<>();
+        while(curr!=null){
+            //while loop to fill map with original node and new node with same value as original node
+            map.put(curr,new Node(curr.val));
+            curr=curr.next;
+        }
+        curr=head;
+        while(curr!=null){
+            //while loop to mark next and random pointers of new nodes
+            map.get(curr).next = map.get(curr.next);
+            map.get(curr).random = map.get(curr.random);
+            curr=curr.next;
+        }
+        return map.get(head);
+    }
+}
+// Time Complexity : O(N+N)
+// Space Complexity : O(N)
