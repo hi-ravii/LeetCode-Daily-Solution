@@ -81,3 +81,20 @@ class Solution {
 }
 // time complexity: O(n)
 // space complexity: O(n)
+
+EASIEST APPROACH 
+class Solution {
+    int sum =0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root);
+        return sum ;
+        
+    }
+    public int height(TreeNode root){
+        if(root==null)return 0;
+        int left = height(root.left);
+        int right = height(root.right);
+        sum = Math.max(sum,(left+right) );
+        return Math.max(left,right)+1;
+    }
+}
