@@ -47,34 +47,35 @@
 // Code:
 class Solution
 {
+    public class pair{
+        int line ;
+        Node root;
+        pair(Node root, int line){
+            this.root = root;
+            this.line =line;
+        }
+    }
     //Function to return a list containing the bottom view of the given tree.
     public ArrayList <Integer> bottomView(Node root)
     {
-        ArrayList<Integer> ans = new ArrayList<>(); 
-        if(root == null) return ans;
-        Map<Integer, Integer> map = new TreeMap<>();
-        Queue<Node> q = new LinkedList<Node>();
-        root.hd = 0;
-        q.add(root); 
-        while(!q.isEmpty()) {
-            Node temp = q.remove();
-            int hd = temp.hd; 
-            map.put(hd, temp.data); 
-            if(temp.left != null) {
-                temp.left.hd = hd - 1; 
-                q.add(temp.left); 
-            }
-            if(temp.right != null) {
-                temp.right.hd = hd + 1; 
-                q.add(temp.right); 
-            }
+        // Code here
+        ArrayList<Integer> res = new ArrayList<>();
+        if(root==null)return res;
+        Map<Integer,Integer> map = new TreeMap<>();
+        Queue<pair> q = new LinkedList<>();
+        q.add(new pair(root,0));
+        while(!q.isEmpty()){
+            pair top = q.poll();
+            int line = top.line;
+            Node temp = top.root;
+            map.put(line,temp.data);
+            if(temp.left!=null)q.add(new pair(temp.left,line-1));
+            if(temp.right!=null)q.add(new pair(temp.right,line+1));
         }
-        
         for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
-            ans.add(entry.getValue()); 
+            res.add(entry.getValue()); 
         }
-        return ans; 
-        
+        return res;
     }
 }
 Time Complexity: O(N)
