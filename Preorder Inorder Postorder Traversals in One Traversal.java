@@ -77,54 +77,46 @@ class TreeNode {
         this.val = val;
     }
 }
-class Pair {
-    TreeNode node;
+class Pair{
     int num;
-    Pair(TreeNode _node, int _num) {
-        num = _num;
-        node = _node;
+    TreeNode root;
+    Pair(int num,TreeNode root){
+        this.num= num;
+        this.root = root;
     }
 }
+
 public class TUF {
     public static void allTraversal(TreeNode root, List < Integer > pre, List < Integer > in , List < Integer > post) {
-        Stack < Pair > st = new Stack < Pair > ();
-        st.push(new Pair(root, 1));
-        
-        if (root == null) return;
-
-        while (!st.isEmpty()) {
-            Pair it = st.pop();
-
+        Stack<Pair> st = new Stack<>();
+        if(root==null)return;
+        st.push(new Pair(1,root));
+        while(!st.isEmpty()){
+            Pair top = st.pop();
             // this is part of pre
             // increment 1 to 2 
             // push the left side of the tree
-            if (it.num == 1) {
-                pre.add(it.node.val);
-                it.num++;
-                st.push(it);
-
-                if (it.node.left != null) {
-                    st.push(new Pair(it.node.left, 1));
-                }
+            if(top.num==1){
+                pre.add(top.root.val);
+                top.num++;
+                st.push(top);
+                if(top.root.left!=null)st.push(new Pair(1,top.root.left));
             }
-
             // this is a part of in 
             // increment 2 to 3 
             // push right 
-            else if (it.num == 2) { in .add(it.node.val);
-                it.num++;
-                st.push(it);
-
-                if (it.node.right != null) {
-                    st.push(new Pair(it.node.right, 1));
-                }
+            else if(top.num==2){
+                in.add(top.root.val);
+                top.num++;
+                st.push(top);
+                if(top.root.right!=null)st.push(new Pair(1,top.root.right));
             }
-            // don't push it back again 
-            else {
-                post.add(it.node.val);
+             // don't push it back again 
+            else{
+                post.add(top.root.val);
             }
         }
- 
+        
 
     }
     public static void main(String args[]) {
