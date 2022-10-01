@@ -66,6 +66,23 @@
 // Code:
 
 //Striver video
+// basic logic  =
+
+// num==1
+// pre.app
+// num++
+// pop
+// st.psush(left,num)
+
+// num==2
+// in.add
+// num++
+// pop
+// st.push(right,num)
+
+// num==3
+// post.add
+
 
 import java.util.*;
 class TreeNode {
