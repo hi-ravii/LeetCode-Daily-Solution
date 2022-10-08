@@ -84,3 +84,50 @@ public class Codec {
 // Codec ser = new Codec();
 // Codec deser = new Codec();
 // TreeNode ans = deser.deserialize(ser.serialize(root));
+
+GFG Solution 
+class Tree 
+{
+    //Function to serialize a tree and return a list containing nodes of tree.
+	public void serialize(Node root, ArrayList<Integer> A) 
+	{
+	    //code here
+	    if(root==null)return ;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node curr = q.poll();
+            if(curr==null){
+                A.add(-1);
+                continue;
+            }
+            A.add(curr.data);
+            q.add(curr.left);
+            q.add(curr.right);
+        }
+	}
+	
+	//Function to deserialize a list and construct the tree.
+    public Node deSerialize(ArrayList<Integer> A)
+    {
+        //code here
+        if(A.size()==0)return null;
+        Queue<Node> q = new LinkedList<>();
+        Node root = new Node(A.get(0));
+        q.add(root);
+        for(int i =1;i<A.size();i++){
+            Node curr = q.poll();
+            if(A.get(i)!=-1){
+                Node left = new Node(A.get(i));
+                curr.left = left;
+                q.add(left);
+            }
+            if(A.get(++i)!=-1){
+                Node right = new Node(A.get(i));
+                curr.right = right;
+                q.add(right);
+            }
+        }
+        return root;
+    }
+};
