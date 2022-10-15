@@ -73,4 +73,27 @@ class Solution {
         }
         return true;
     }
+
+    APPROACH 3 
+    class Solution {
+        public boolean isPalindrome(String s) {
+            StringBuilder sb = new StringBuilder();
+            for(int i=0;i<s.length();i++){
+                char ch = s.charAt(i);
+                if(Character.isLetterOrDigit(ch)){
+                    sb.append(Character.toLowerCase(ch));
+                }
+            }
+            String st = sb.toString();
+            int i=0,j=st.length()-1;
+            while(i<j){
+                if(st.charAt(i)!=st.charAt(j))return false;
+                else{
+                    i++;
+                    j--;
+                }
+            }
+            return true;
+        }
+    }
 }
