@@ -28,7 +28,7 @@
  
 
 // Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime complexity?
-
+APPROACH 1: HashSet
 class Solution {
     public int missingNumber(int[] nums) {
         Set<Integer> set =new HashSet<>();
@@ -39,5 +39,32 @@ class Solution {
             if(!set.contains(i))return i;
         }
         return -1;
+    }
+}
+
+APPROACH 2 : Sorting
+class Solution {
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+        for(int i =0;i<nums.length;i++){
+            if(nums[i]!=i)return i;
+        }
+        return nums.length;
+    }
+}
+APPROACH 3 : Gauss Formula
+class Compute {
+    
+    public static int missingNumber(int A[], int N)
+    {
+         // Your code goes here
+         int sum =0,total=0;
+         for(int i =0;i<N;i++){
+             sum+=  A[i];
+         }
+         for(int i =1;i<=N;i++){
+             total+=i;
+         }
+         return total-sum;
     }
 }
